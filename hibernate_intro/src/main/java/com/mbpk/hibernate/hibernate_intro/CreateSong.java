@@ -5,31 +5,31 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.mbpk.hibernate.entity.Music;
+import com.mbpk.hibernate.hibernate_utility.HibernateUtility;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class CreateSong 
 {
     public static void main( String[] args )
     {
-    	Configuration config = new Configuration();
-    	config.configure("hibernate.cfg.xml");
-    	config.addAnnotatedClass(Music.class);
-    	SessionFactory sf = config.buildSessionFactory();
+    	SessionFactory sf = HibernateUtility.getSessionFactory();
     	Session session = sf.openSession();
     	
         Music song = new Music();
-        song.setSongid(4);
-        song.setSongName("What a Karuvad");
-        song.setSinger("Dhanush");
+        song.setSongid(1);
+        song.setSongName("Wolves");
+        song.setSinger("Selena");
         
         session.beginTransaction();
-        session.persist(song);
+        session.persist(song);//can use save but deprecated
         session.getTransaction().commit();
         
         System.out.println("Song added to the library....");
         
     }
+
+	
 }
