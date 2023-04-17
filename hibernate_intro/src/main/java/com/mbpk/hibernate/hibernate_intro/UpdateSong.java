@@ -13,16 +13,16 @@ public class UpdateSong {
 		SessionFactory sf = HibernateUtility.getSessionFactory();
 		Session session = sf.openSession();
 		
-		Music song = session.get(Music.class, 2);
+		Music song = session.get(Music.class, 1);
 		System.out.println(song);
-		song.setSinger("GV Prakash");
+		song.setSinger("Selena Gomez");
 		
 		session.beginTransaction();
 		session.merge(song);// can use update but it is deprecated
 		session.getTransaction().commit();
 		System.out.println("Updated the song....");
 		
-		Music song1 = session.get(Music.class, 2);
+		Music song1 = session.get(Music.class, 1);
 		System.out.println(song1);
 	}
 

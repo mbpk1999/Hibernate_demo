@@ -15,7 +15,7 @@ public class HibernateUtility {
 			Configuration config = new Configuration();
 			config.configure("hibernate.cfg.xml");
 			config.addAnnotatedClass(Music.class);
-			SessionFactory sf = config.buildSessionFactory();
+			sf = config.buildSessionFactory();
 		}
 		return sf;
 	}
