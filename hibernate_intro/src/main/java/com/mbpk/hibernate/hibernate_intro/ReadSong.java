@@ -12,11 +12,15 @@ public class ReadSong {
 	public static void main(String[] args) {
 		
 		SessionFactory sf = HibernateUtility.getSessionFactory();
-		Session session = sf.openSession();
 		
-		Music song = session.get(Music.class, 1);// can use load
-		
-		System.out.println(song);
+		if (sf != null) {
+			Session session = sf.openSession();
+			Music song = session.get(Music.class, 1);// can use load
+			System.out.println(song);
+		}
+		else {
+			System.out.println("Session is null...");
+		}
 			
 	}
 

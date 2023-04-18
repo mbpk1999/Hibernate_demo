@@ -11,15 +11,19 @@ public class DeleteSong {
 
 	public static void main(String[] args) {
 		SessionFactory sf = HibernateUtility.getSessionFactory();
-		Session session = sf.openSession();
 		
-		Music song = session.get(Music.class, 1);
-		System.out.println(song);
-		
-		session.beginTransaction();
-		session.remove(song); // can use delete but it is deprecated
-		session.getTransaction().commit();
-		System.out.println("Deleted the song....");
+		if (sf != null) {
+			Session session = sf.openSession();
+			Music song = session.get(Music.class, 1);
+			System.out.println(song);
+			session.beginTransaction();
+			session.remove(song); // can use delete but it is deprecated
+			session.getTransaction().commit();
+			System.out.println("Deleted the song....");
+		}
+		else {
+			System.out.println("Session is null....");
+		}
 		
 	}
 
