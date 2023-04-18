@@ -16,18 +16,21 @@ public class CreateSong
     public static void main( String[] args )
     {
     	SessionFactory sf = HibernateUtility.getSessionFactory();
-    	Session session = sf.openSession();
     	
-        Music song = new Music();
-        song.setSongid(1);
-        song.setSongName("Wolves");
-        song.setSinger("Selena");
-        
-        session.beginTransaction();
-        session.persist(song);//can use save but deprecated
-        session.getTransaction().commit();
-        
-        System.out.println("Song added to the library....");
+        if (sf != null) {
+        	Session session = sf.openSession();
+			Music song = new Music();
+			song.setSongid(1);
+			song.setSongName("Wolves");
+			song.setSinger("Selena");
+			session.beginTransaction();
+			session.persist(song);//can use save but deprecated
+			session.getTransaction().commit();
+			System.out.println("Song added to the library....");
+		}
+        else {
+			System.out.println("Session is null.....");
+		}
         
     }
 
